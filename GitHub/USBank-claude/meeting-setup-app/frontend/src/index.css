@@ -1,0 +1,194 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --red:   #CC0000;
+  --navy:  #0C2340;
+  --gold:  #B9975B;
+  --bg:    #F5F7FA;
+  --white: #FFFFFF;
+  --border: #E5E7EB;
+  --radius: 8px;
+  --shadow: 0 2px 16px rgba(12, 35, 64, 0.10);
+}
+
+body {
+  font-family: Arial, 'Helvetica Neue', sans-serif;
+  background: var(--bg);
+  color: #1a1a2e;
+  min-height: 100vh;
+}
+
+/* ── Layout ───────────────────────────────── */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  width: 100%;
+  background: var(--navy);
+  padding: 14px 32px;
+  border-bottom: 4px solid var(--red);
+}
+
+.card {
+  width: 100%;
+  max-width: 580px;
+  margin: 48px 16px;
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: 36px 40px;
+}
+
+/* ── Form ─────────────────────────────────── */
+.screen-title {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--navy);
+  border-bottom: 2px solid var(--gold);
+  padding-bottom: 12px;
+  margin-bottom: 28px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.field input,
+.field select,
+.field textarea {
+  padding: 10px 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-family: inherit;
+  color: inherit;
+  transition: border-color 0.15s;
+}
+
+.field input:focus,
+.field select:focus,
+.field textarea:focus {
+  outline: none;
+  border-color: var(--navy);
+}
+
+.field textarea { resize: vertical; }
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* ── Buttons ──────────────────────────────── */
+.button-row {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.btn-submit,
+.btn-cancel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s, transform 0.1s;
+}
+
+.btn-submit { background: var(--red); color: #fff; }
+.btn-cancel { background: transparent; color: var(--navy); border: 1.5px solid var(--navy); }
+
+.btn-submit:hover:not(:disabled),
+.btn-cancel:hover:not(:disabled) { opacity: 0.85; transform: translateY(-1px); }
+
+.btn-submit:disabled,
+.btn-cancel:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Error ────────────────────────────────── */
+.error-banner {
+  background: #FEE2E2;
+  color: #B91C1C;
+  border: 1px solid #FECACA;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  font-size: 0.875rem;
+  margin-bottom: 8px;
+}
+
+/* ── Status screen ────────────────────────── */
+.status-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 56px 40px;
+  gap: 24px;
+}
+
+.spinner {
+  width: 56px;
+  height: 56px;
+  border: 5px solid var(--border);
+  border-top-color: var(--red);
+  border-radius: 50%;
+  animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.status-message {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.status-message.success { color: #2E7D32; }
+.status-message.error   { color: var(--red); }
+
+.btn-back {
+  padding: 10px 28px;
+  background: var(--navy);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.btn-back:hover { opacity: 0.85; }
+
+/* ── Responsive ───────────────────────────── */
+@media (max-width: 600px) {
+  .card { margin: 24px 12px; padding: 24px 20px; }
+  .field-row { grid-template-columns: 1fr; }
+}
